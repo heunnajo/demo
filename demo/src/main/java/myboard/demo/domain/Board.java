@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
@@ -33,7 +34,7 @@ public class Board {
     @Column
     private LocalDateTime deldate;
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OrderBy("id asc")
+    @OrderBy("id asc") // 댓글 정렬
     private List<Reply> replies;
 
     @Builder
@@ -50,11 +51,12 @@ public class Board {
         this.content = board.getContent();
     }
 
-    @LastModifiedDate//엔티티가 수정될 때 수정 시간 저장
+    @CreatedDate
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @OrderBy("id asc") // 댓글 정렬
-    private List<Reply> replies;
 }
