@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,4 +50,11 @@ public class Board {
         this.content = board.getContent();
     }
 
+    @LastModifiedDate//엔티티가 수정될 때 수정 시간 저장
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id asc") // 댓글 정렬
+    private List<Reply> replies;
 }
