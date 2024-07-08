@@ -28,9 +28,10 @@ public class ReplyRepository {
                 .getResultList();
     }
     public Reply findByBoardIdAndReplyId(Long boardId, Long replyId, String content){
-        return em.createQuery("select r from Reply r where r.board_id = :boardId and r.reply_id = :replyId",Reply.class)
-                .setParameter("boardId",boardId, "replyId",replyId)
-                .getFirstResult();
+        return em.createQuery("select r from Reply r where r.board_id = ? and r.reply_id = ?",Reply.class)
+                .setParameter(1, boardId.intValue())
+                .setParameter(2, replyId.intValue())
+                .getSingleResult();
     }
     public List<Reply> findByContent(String content){
         return em.createQuery("select r from Reply r where r.content = :content",Reply.class)
