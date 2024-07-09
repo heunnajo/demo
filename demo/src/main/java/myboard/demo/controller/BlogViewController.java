@@ -36,7 +36,7 @@ public class BlogViewController {
         model.addAttribute("boards",boards);//블로그 글 리스트 저장
         return "articleList";//articleList.html 라는 뷰 조회. resource/templates/articleList.html을 찾도록 뷰의 이름을 적어준 것.
     }
-    @GetMapping("/articles/{id}")
+    @GetMapping("/boards/{id}")
     public String getArticle(@PathVariable Long id, Model model){
         Board article = boardService.findById(id);
         model.addAttribute("article",new boardViewResponse(article));//화면에서 사용할 모델에 데이터를 저장한다.
