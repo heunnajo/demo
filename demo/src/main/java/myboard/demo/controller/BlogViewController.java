@@ -19,7 +19,7 @@ public class BlogViewController {
     private final BoardService boardService;
     private final ReplyService replyService;
     @GetMapping("/new-board")
-    public String newArticle(@RequestParam(required = false)Long id, Model model){
+    public String newBoard(@RequestParam(required = false)Long id, Model model){
         if(id==null)
             model.addAttribute("board",new boardViewResponse());
         else{
@@ -29,7 +29,7 @@ public class BlogViewController {
         return "newBoard";
     }
     @GetMapping("/boards")
-    public String getArticles(Model model){
+    public String getBoards(Model model){
         List<boardListViewResponse> boards = boardService.findAll().stream()
                 .map(boardListViewResponse::new)
                 .toList();
@@ -37,9 +37,9 @@ public class BlogViewController {
         return "articleList";//articleList.html 라는 뷰 조회. resource/templates/articleList.html을 찾도록 뷰의 이름을 적어준 것.
     }
     @GetMapping("/boards/{id}")
-    public String getArticle(@PathVariable Long id, Model model){
-        Board article = boardService.findById(id);
-        model.addAttribute("article",new boardViewResponse(article));//화면에서 사용할 모델에 데이터를 저장한다.
+    public String getBoard(@PathVariable Long id, Model model){
+        Board board = boardService.findById(id);
+        model.addAttribute("board",new boardViewResponse(board));//화면에서 사용할 모델에 데이터를 저장한다.
         List<ReplyResponse> replies = replyService.findAll(id).stream()
                 .map(ReplyResponse::new).toList();
         if (replies != null && !replies.isEmpty()) {
