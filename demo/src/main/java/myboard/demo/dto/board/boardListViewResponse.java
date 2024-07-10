@@ -10,7 +10,7 @@ public class boardListViewResponse {
     private final String content;
 
     private final String author;
-    public ArticleListViewResponse(Board board){
+    public boardListViewResponse(Board board){
         this.id =board.getId();
         this.title= board.getTitle();
         this.content = board.getContent();
