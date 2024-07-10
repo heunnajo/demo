@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import myboard.demo.domain.Board;
 import myboard.demo.dto.board.addBoardRequest;
 import myboard.demo.dto.board.updateBoardRequest;
-import myboard.demo.repository.jpaBoardRepository;
+import myboard.demo.repository.JpaBoardRepository;
+import myboard.demo.repository.JpaUserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-    private final jpaBoardRepository jpaBoardRepository;
-    private final myboard.demo.repository.jpaUserRepository jpaUserRepository;
+    private final JpaBoardRepository jpaBoardRepository;
+    private final JpaUserRepository jpaUserRepository;
     public Board save(addBoardRequest request, String userId){
         return jpaBoardRepository.save(request.toEntity(userId));
     }
