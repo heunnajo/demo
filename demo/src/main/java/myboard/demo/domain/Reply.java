@@ -2,6 +2,7 @@ package myboard.demo.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -30,15 +31,17 @@ public class Reply {
     @Column
     private String content;
     @Column
+    @CreatedDate
     private LocalDateTime regdate;
     @Column
     private LocalDateTime deldate;
 
     @Builder
-    public Reply(Long id,User writer,String title,String content,LocalDateTime regdate){
+    public Reply(Long id,User writer,String title,String content,LocalDateTime regdate,Board board){
         this.user = writer;
         this.content = content;
         this.regdate = regdate;
+        this.board = board;
     }
 
     public void update(Reply reply){
