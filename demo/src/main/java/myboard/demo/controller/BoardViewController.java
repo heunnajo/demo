@@ -15,7 +15,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class BlogViewController {
+public class BoardViewController {
     private final BoardService boardService;
     private final ReplyService replyService;
     @GetMapping("/new-board")
