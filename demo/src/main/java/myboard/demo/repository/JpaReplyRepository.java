@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface JpaReplyRepository extends JpaRepository<Reply,Long> {
     List<Reply> getReplyByBoardOrderById(Board board);
-    Optional<Reply> findByBoardAndId(Long boardId, Long id);
+    Optional<Reply> findByBoardIdAndId(Long boardId, Long replyId);
 }
 
