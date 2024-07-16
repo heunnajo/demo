@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class updateReplyRequest {
-    private String comment;
+    private String reply;
 }
