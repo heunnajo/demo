@@ -23,7 +23,7 @@ public class ReplyService {
 
     //댓글 추가 메서드
     public Reply save(Long id,addReplyRequest request, String userId) {
-        Optional<User> userOptional = jpaUserRepository.findById(userId);
+        Optional<User> userOptional = jpaUserRepository.findByMemberId(userId);
         User user;
         if (userOptional.isPresent()) { // Optional이 값으로 채워져 있는지 확인
             user = userOptional.get(); // User 객체 추출
