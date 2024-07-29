@@ -57,7 +57,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return memberId;
+        return name;
     }
 
     //추가 구현
