@@ -4,13 +4,14 @@ import lombok.RequiredArgsConstructor;
 import myboard.demo.domain.User;
 import myboard.demo.dto.user.addUserRequest;
 import myboard.demo.repository.JpaUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
-
+    @Autowired
     private final JpaUserRepository jpaUserRepository;
 
     public Long save(addUserRequest dto){
